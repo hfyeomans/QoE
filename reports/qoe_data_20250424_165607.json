@@ -1,0 +1,47 @@
+{
+    "www.google.com": {
+        "url": "https://www.google.com",
+        "error_rate": 0.0,
+        "error_messages": [],
+        "page_load_time": 1979.3412685394287,
+        "above_fold_time": 536,
+        "ttfb": 301.652,
+        "time_to_interactive": 1052.9000000009935
+    },
+    "www.amazon.com": {
+        "url": "https://www.amazon.com",
+        "error_rate": 0.0,
+        "error_messages": [],
+        "page_load_time": 1116.0902976989746,
+        "above_fold_time": 232,
+        "ttfb": 96.97500000000001,
+        "time_to_interactive": 805.5
+    },
+    "www.wikipedia.org": {
+        "url": "https://www.wikipedia.org",
+        "error_rate": 0.0,
+        "error_messages": [],
+        "page_load_time": 864.6753629048666,
+        "above_fold_time": null,
+        "ttfb": 36.48866666666666,
+        "time_to_interactive": 547.0666666676601
+    },
+    "www.github.com": {
+        "url": "https://www.github.com",
+        "error_rate": 0.0,
+        "error_messages": [],
+        "page_load_time": 771.3676293691,
+        "above_fold_time": 245.33333333333334,
+        "ttfb": 19.172666666666665,
+        "time_to_interactive": 459.79999999701977
+    },
+    "www.stackoverflow.com": {
+        "url": "https://www.stackoverflow.com",
+        "error_rate": 0.0,
+        "error_messages": [],
+        "page_load_time": 1035.5188846588135,
+        "above_fold_time": 473.3333333333333,
+        "ttfb": 94.605,
+        "time_to_interactive": 723.6666666666666
+    }
+}

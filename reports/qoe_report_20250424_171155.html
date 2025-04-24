@@ -1,0 +1,266 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Quality of Experience Test Results</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    line-height: 1.6;
+                    margin: 0;
+                    padding: 20px;
+                    color: #333;
+                }
+                h1 {
+                    color: #2c3e50;
+                    border-bottom: 2px solid #3498db;
+                    padding-bottom: 10px;
+                }
+                .summary {
+                    margin: 20px 0;
+                    padding: 15px;
+                    background-color: #f8f9fa;
+                    border-radius: 5px;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 20px 0;
+                }
+                th, td {
+                    padding: 12px 15px;
+                    border: 1px solid #ddd;
+                    text-align: left;
+                }
+                th {
+                    background-color: #3498db;
+                    color: white;
+                    position: sticky;
+                    top: 0;
+                }
+                tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+                .error {
+                    color: #e74c3c;
+                }
+                .domain {
+                    font-weight: bold;
+                }
+                .chart-container {
+                    height: 400px;
+                    margin: 30px 0;
+                }
+                .footer {
+                    margin-top: 30px;
+                    text-align: center;
+                    font-size: 0.8em;
+                    color: #7f8c8d;
+                }
+            </style>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        </head>
+        <body>
+            <h1>Quality of Experience Test Results</h1>
+            <div class="summary">
+                <p><strong>Test Date:</strong> 2025-04-24 17:11:55</p>
+                <p><strong>Number of Sites Tested:</strong> 5</p>
+            </div>
+            
+            <h2>Results Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Domain</th>
+                        <th>Page Load Time (ms)</th>
+                        <th>Above-fold Time (ms)</th>
+                        <th>Time to First Byte (ms)</th>
+                        <th>Time to Interactive (ms)</th>
+                        <th>Error Rate (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                <tr>
+                    <td class="domain">www.google.com</td>
+                    <td>1738.79</td>
+                    <td>438.67</td>
+                    <td>286.93</td>
+                    <td>1326.13</td>
+                    <td>0.00%</td>
+                </tr>
+            
+                <tr>
+                    <td class="domain">www.amazon.com</td>
+                    <td>1477.93</td>
+                    <td>254.67</td>
+                    <td>126.03</td>
+                    <td>1176.17</td>
+                    <td>0.00%</td>
+                </tr>
+            
+                <tr>
+                    <td class="domain">www.wikipedia.org</td>
+                    <td>522.30</td>
+                    <td>N/A</td>
+                    <td>36.99</td>
+                    <td>201.33</td>
+                    <td>0.00%</td>
+                </tr>
+            
+                <tr>
+                    <td class="domain">www.github.com</td>
+                    <td>762.71</td>
+                    <td>334.67</td>
+                    <td>19.46</td>
+                    <td>460.97</td>
+                    <td>0.00%</td>
+                </tr>
+            
+                <tr>
+                    <td class="domain">www.stackoverflow.com</td>
+                    <td>987.75</td>
+                    <td>433.33</td>
+                    <td>96.97</td>
+                    <td>678.20</td>
+                    <td>0.00%</td>
+                </tr>
+            
+                </tbody>
+            </table>
+            
+            <h2>Performance Charts</h2>
+            
+            <div class="chart-container">
+                <canvas id="pageLoadChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="ttfbChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="timeToInteractiveChart"></canvas>
+            </div>
+            
+            <script>
+                // Page Load Time Chart
+                const pageLoadCtx = document.getElementById('pageLoadChart').getContext('2d');
+                new Chart(pageLoadCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["www.google.com", "www.amazon.com", "www.wikipedia.org", "www.github.com", "www.stackoverflow.com"],
+                        datasets: [{
+                            label: 'Page Load Time (ms)',
+                            data: [1738.7874126434326, 1477.9289563496907, 522.2965081532797, 762.7050081888834, 987.7524375915527],
+                            backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                            borderColor: 'rgba(52, 152, 219, 1)',
+                            borderWidth: 1
+                        }, {
+                            label: 'Above-fold Time (ms)',
+                            data: [438.6666666666667, 254.66666666666666, 0, 334.6666666666667, 433.3333333333333],
+                            backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                            borderColor: 'rgba(46, 204, 113, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Page Load Times Comparison'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Time (ms)'
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // TTFB Chart
+                const ttfbCtx = document.getElementById('ttfbChart').getContext('2d');
+                new Chart(ttfbCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["www.google.com", "www.amazon.com", "www.wikipedia.org", "www.github.com", "www.stackoverflow.com"],
+                        datasets: [{
+                            label: 'Time to First Byte (ms)',
+                            data: [286.9286666666667, 126.02699999999999, 36.987, 19.464999999999996, 96.965],
+                            backgroundColor: 'rgba(155, 89, 182, 0.7)',
+                            borderColor: 'rgba(155, 89, 182, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Time to First Byte'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Time (ms)'
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // Time to Interactive Chart
+                const ttiCtx = document.getElementById('timeToInteractiveChart').getContext('2d');
+                new Chart(ttiCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["www.google.com", "www.amazon.com", "www.wikipedia.org", "www.github.com", "www.stackoverflow.com"],
+                        datasets: [{
+                            label: 'Time to Interactive (ms)',
+                            data: [1326.133333330353, 1176.1666666716337, 201.33333332836628, 460.96666666368645, 678.1999999980131],
+                            backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                            borderColor: 'rgba(231, 76, 60, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Time to Interactive'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Time (ms)'
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+            
+            <div class="footer">
+                <p>Generated on 2025-04-24 17:11:55</p>
+            </div>
+        </body>
+        </html>
+        
